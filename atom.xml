@@ -119,10 +119,10 @@
   
   <entry>
     <title>Docker 启动 nginx</title>
-    <link href="https://siji-90.github.io/blog/2020/10/06/Docker%20%E5%90%AF%E5%8A%A8%20Nginx%20/"/>
-    <id>https://siji-90.github.io/blog/2020/10/06/Docker%20%E5%90%AF%E5%8A%A8%20Nginx%20/</id>
+    <link href="https://siji-90.github.io/blog/2020/10/06/Docker%20%E5%90%AF%E5%8A%A8%20Nginx/"/>
+    <id>https://siji-90.github.io/blog/2020/10/06/Docker%20%E5%90%AF%E5%8A%A8%20Nginx/</id>
     <published>2020-10-06T06:34:24.000Z</published>
-    <updated>2021-07-18T06:07:49.123Z</updated>
+    <updated>2021-07-18T08:51:17.339Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Docker-启动-Nginx"><a href="#Docker-启动-Nginx" class="headerlink" title="Docker 启动 Nginx"></a>Docker 启动 Nginx</h1><p> 常规安装可以在官网上找到具体步骤,这里主要是记录 Docker 安装 Nginx</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> docker 拉取 nginx 官方镜像</span></span><br><span class="line">docker pull nginx:latest</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 nginx 容器并挂载目录映射90端口 (建议: 先启动一个容器把需要映射的文件拷贝出来,然后删除容器,重新启动一个容器把文件映射进去)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v 命令表示把外部文件挂载到容器内部,直接启动的话挂载的目录会没有文件!!!</span></span><br><span class="line">docker run -d --name nginx-container -p 90:80 \</span><br><span class="line">-v /data/nginx/conf.d:/etc/nginx/conf.d \</span><br><span class="line">-v /data/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /data/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /data/nginx/log:/var/log/nginx \</span><br><span class="line">--restart=always \</span><br><span class="line">nginx:latest</span><br></pre></td></tr></table></figure><p>以上就是 docker 启动 nginx 的详细命令</p>]]></content>
     
@@ -134,10 +134,10 @@
     
     
     
-    <category term="Nginx" scheme="https://siji-90.github.io/blog/categories/Nginx/"/>
+    <category term="Nginx Docker" scheme="https://siji-90.github.io/blog/categories/Nginx-Docker/"/>
     
     
-    <category term="Nginx" scheme="https://siji-90.github.io/blog/tags/Nginx/"/>
+    <category term="Nginx Docker" scheme="https://siji-90.github.io/blog/tags/Nginx-Docker/"/>
     
   </entry>
   
