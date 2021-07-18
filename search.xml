@@ -197,7 +197,7 @@
   <entry>
     <title>存储设备划分</title>
     <url>/blog/2020/10/04/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/</url>
-    <content><![CDATA[<h1 id="存储设备划分"><a href="#存储设备划分" class="headerlink" title="存储设备划分"></a>存储设备划分</h1><h2 id="存储设备的层次"><a href="#存储设备的层次" class="headerlink" title="存储设备的层次"></a>存储设备的层次</h2><p><img src="/img/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B1%82%E6%AC%A1.png" alt="存储设备层次"></p>
+    <content><![CDATA[<h1 id="存储设备划分"><a href="#存储设备划分" class="headerlink" title="存储设备划分"></a>存储设备划分</h1><h2 id="存储设备的层次"><a href="#存储设备的层次" class="headerlink" title="存储设备的层次"></a>存储设备的层次</h2><p><img src="/blog/img/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B1%82%E6%AC%A1.png" alt="存储设备层次"></p>
 <p>各种不同的存储分类如图 1-4 所示。 层次越高， 价格越贵， 速度越快。 从高到低， 每个层次价格会降低，速度变慢， 访问时间增加。 其中上面四层（<strong>寄存器、高速缓存、内存、固态硬盘</strong>）通常由半导体内存构成。</p>
 <h2 id="储存系统分为易失和非易失的。"><a href="#储存系统分为易失和非易失的。" class="headerlink" title="储存系统分为易失和非易失的。"></a>储存系统分为易失和非易失的。</h2><blockquote>
 <p>概念：</p>
