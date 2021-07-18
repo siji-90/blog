@@ -9,10 +9,12 @@
 <p>以上就是 docker 启动 nginx 的详细命令</p>
 ]]></content>
       <categories>
-        <category>Nginx Docker</category>
+        <category>Nginx</category>
+        <category>Docker</category>
       </categories>
       <tags>
-        <tag>Nginx Docker</tag>
+        <tag>Nginx</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
