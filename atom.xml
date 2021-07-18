@@ -6,7 +6,7 @@
   <link href="https://siji-90.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://siji-90.github.io/blog/"/>
-  <updated>2021-07-18T09:06:26.836Z</updated>
+  <updated>2021-07-18T09:09:57.359Z</updated>
   <id>https://siji-90.github.io/blog/</id>
   
   <author>
@@ -15,26 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://siji-90.github.io/blog/2021/07/18/NAT%E6%A8%A1%E5%BC%8F-HostOnly%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/"/>
-    <id>https://siji-90.github.io/blog/2021/07/18/NAT%E6%A8%A1%E5%BC%8F-HostOnly%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/</id>
-    <published>2021-07-18T09:06:26.836Z</published>
-    <updated>2021-07-18T09:06:26.836Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="NAT-模式-Host-Only模式-桥接模式详解"><a href="#NAT-模式-Host-Only模式-桥接模式详解" class="headerlink" title="NAT 模式 Host-Only模式 桥接模式详解"></a>NAT 模式 Host-Only模式 桥接模式详解</h1><blockquote><p>缘由：由于一次 virtual box 虚拟机的网络配置，虚拟机和宿主机之间 ping 不通， 虚拟机也 ping 不通外网。所以抽了些时间了解了一下这三种模式。</p></blockquote><h3 id="1-NAT-Network-Address-Translation，网络地址转换-模式"><a href="#1-NAT-Network-Address-Translation，网络地址转换-模式" class="headerlink" title="1. NAT(Network Address Translation，网络地址转换) 模式"></a>1. NAT(Network Address Translation，网络地址转换) 模式</h3><h3 id="2-Host-Only（仅主机）模式"><a href="#2-Host-Only（仅主机）模式" class="headerlink" title="2. Host-Only（仅主机）模式"></a>2. Host-Only（仅主机）模式</h3><h3 id="3-桥接模式"><a href="#3-桥接模式" class="headerlink" title="3. 桥接模式"></a>3. 桥接模式</h3>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;NAT-模式-Host-Only模式-桥接模式详解&quot;&gt;&lt;a href=&quot;#NAT-模式-Host-Only模式-桥接模式详解&quot; class=&quot;headerlink&quot; title=&quot;NAT 模式 Host-Only模式 桥接模式详解&quot;&gt;&lt;/a&gt;NAT 模式 Host</summary>
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>Vue data 属性赋值后页面不刷新问题</title>

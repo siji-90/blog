@@ -149,14 +149,6 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/blog/2021/07/18/NAT%E6%A8%A1%E5%BC%8F-HostOnly%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="NAT-模式-Host-Only模式-桥接模式详解"><a href="#NAT-模式-Host-Only模式-桥接模式详解" class="headerlink" title="NAT 模式 Host-Only模式 桥接模式详解"></a>NAT 模式 Host-Only模式 桥接模式详解</h1><blockquote>
-<p>缘由：由于一次 virtual box 虚拟机的网络配置，虚拟机和宿主机之间 ping 不通， 虚拟机也 ping 不通外网。所以抽了些时间了解了一下这三种模式。</p>
-</blockquote>
-<h3 id="1-NAT-Network-Address-Translation，网络地址转换-模式"><a href="#1-NAT-Network-Address-Translation，网络地址转换-模式" class="headerlink" title="1. NAT(Network Address Translation，网络地址转换) 模式"></a>1. NAT(Network Address Translation，网络地址转换) 模式</h3><h3 id="2-Host-Only（仅主机）模式"><a href="#2-Host-Only（仅主机）模式" class="headerlink" title="2. Host-Only（仅主机）模式"></a>2. Host-Only（仅主机）模式</h3><h3 id="3-桥接模式"><a href="#3-桥接模式" class="headerlink" title="3. 桥接模式"></a>3. 桥接模式</h3>]]></content>
-  </entry>
-  <entry>
     <title>Shell 遍历当前文件夹</title>
     <url>/blog/2020/12/12/Shell%20for%20%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Shell-遍历当前文件夹"><a href="#Shell-遍历当前文件夹" class="headerlink" title="Shell 遍历当前文件夹"></a>Shell 遍历当前文件夹</h1><p>shell for 指令一般使用的格式为:</p>
