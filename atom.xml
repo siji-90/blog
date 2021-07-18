@@ -6,7 +6,7 @@
   <link href="https://siji-90.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://siji-90.github.io/blog/"/>
-  <updated>2021-07-18T09:09:57.359Z</updated>
+  <updated>2021-07-18T09:20:39.550Z</updated>
   <id>https://siji-90.github.io/blog/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Vue data 属性赋值后页面不刷新问题</title>
+    <title>数据库Null返回前端变为 -1 问题</title>
     <link href="https://siji-90.github.io/blog/2021/03/18/%E6%95%B0%E6%8D%AE%E5%BA%93Null%E8%BF%94%E5%9B%9E%E5%89%8D%E7%AB%AF%E5%8F%98%E4%B8%BA%20-1%20%E9%97%AE%E9%A2%98/"/>
     <id>https://siji-90.github.io/blog/2021/03/18/%E6%95%B0%E6%8D%AE%E5%BA%93Null%E8%BF%94%E5%9B%9E%E5%89%8D%E7%AB%AF%E5%8F%98%E4%B8%BA%20-1%20%E9%97%AE%E9%A2%98/</id>
     <published>2021-03-18T12:32:13.000Z</published>
-    <updated>2021-07-18T09:09:57.359Z</updated>
+    <updated>2021-07-18T09:20:39.550Z</updated>
     
     <content type="html"><![CDATA[<h1 id="数据库Null返回前端变为-1-问题"><a href="#数据库Null返回前端变为-1-问题" class="headerlink" title="数据库Null返回前端变为 -1 问题"></a>数据库Null返回前端变为 -1 问题</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在实体类上加上这个注解，使用 ToStringSerializer 序列化器</span></span><br><span class="line"><span class="meta">@JsonSerialize(using = ToStringSerializer.class)</span></span><br></pre></td></tr></table></figure>]]></content>
     
