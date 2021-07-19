@@ -288,7 +288,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Class&lt;Integer&gt;  TYPE = (Class&lt;Integer&gt;) Class.getPrimitiveClass(<span class="string">&quot;int&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">   * Return the Virtual Machine&#x27;s Class object for the named</span></span><br><span class="line"><span class="comment">   * primitive type.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">native</span> Class&lt;?&gt; getPrimitiveClass(String name);</span><br></pre></td></tr></table></figure>
 
 <p>可以看到 <code>Class#getPrimitiveClass</code>使用 native 修饰，即底层使用 C 实现，直接由 JVM 返回。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>基本类型的实例可以通过 类型.class 或者其包装类型的 Type 属性获取。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>基本类型的实例可以通过 <code>类型.class</code> 或者 <code>包装类型.Type</code> 获取。</p>
 ]]></content>
       <categories>
         <category>Java</category>
