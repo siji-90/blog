@@ -6,7 +6,7 @@
   <link href="https://siji-90.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://siji-90.github.io/blog/"/>
-  <updated>2021-07-19T01:38:55.781Z</updated>
+  <updated>2021-07-19T01:43:45.824Z</updated>
   <id>https://siji-90.github.io/blog/</id>
   
   <author>
@@ -17,18 +17,19 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Mybatis 优点</title>
-    <link href="https://siji-90.github.io/blog/2021/03/28/MyBatis%E4%BC%98%E7%82%B9/"/>
-    <id>https://siji-90.github.io/blog/2021/03/28/MyBatis%E4%BC%98%E7%82%B9/</id>
+    <title>Mybatis 简介</title>
+    <link href="https://siji-90.github.io/blog/2021/03/28/MyBatis%E7%AE%80%E4%BB%8B/"/>
+    <id>https://siji-90.github.io/blog/2021/03/28/MyBatis%E7%AE%80%E4%BB%8B/</id>
     <published>2021-03-28T13:30:22.000Z</published>
-    <updated>2021-07-19T01:38:55.781Z</updated>
+    <updated>2021-07-19T01:43:45.824Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote><p>MyBatis 源于 Aapche 的一个开源项目 iBatis。而 iBatis 是 2002 年 Clinton Begin 开发的一款在持久层使用的半自动 ORM 框架。MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p></blockquote><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul><li>消除了大量的 JDBC 冗余代码，包括参数设置、结果集封装等。</li><li>SQL 语句可控制，方便查询优化，使用更加灵活。</li><li>学习成本比较低，对于新用户能够快速学习使用。</li><li>提供了与主流 IOC 框架 Spring 的集成支持。</li><li>引入缓存机制，提供了与第三方缓存类库的集成支持。</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote><p>MyBatis 源于 Aapche 的一个开源项目 iBatis。而 iBatis 是 2002 年 Clinton Begin 开发的一款在持久层使用的半自动 ORM 框架。MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p></blockquote><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul><li>消除了大量的 JDBC 冗余代码，包括参数设置、结果集封装等。</li><li>SQL 语句可控制，方便查询优化，使用更加灵活。</li><li>学习成本比较低，对于新用户能够快速学习使用。</li><li>提供了与主流 IOC 框架 Spring 的集成支持。</li><li>引入缓存机制，提供了与第三方缓存类库的集成支持。</li></ul>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;MyBatis&quot;&gt;&lt;a href=&quot;#MyBatis&quot; class=&quot;headerlink&quot; title=&quot;MyBatis&quot;&gt;&lt;/a&gt;MyBatis&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简</summary>
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;MyBatis 源于 Aapche 的一个开源项目 iBatis。而 iBatis 是 2002 年 Clinto</summary>
       
     
     
