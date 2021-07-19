@@ -35,6 +35,13 @@
 <li><code>DataSource#getConnection()</code> (JDBC 2.0)</li>
 </ul>
 <p>值得一提的是，JDBC 并没有提供 DataSource 的实现，DataSource 的具体实现由数据库厂商提供。此外，一些主流的数据库连接池（如 C3P0、Druid等）也提供了 DataSource 的具体实现。</p>
+<p>所有的 JDBC 驱动都必须实现 Driver 接口。而且实现类都包含一个静态初始化代码块。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">pulic <span class="class"><span class="keyword">class</span> <span class="title">CustomDriver</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">sql</span>.<span class="title">Driver</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        java.sql.DriverManager.registerDriver(<span class="keyword">new</span> CustomDirver());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们加载启动类时，静态代码块就会调用，然后向 DriverManager 中注册一个驱动类的实例。所以我们使用 JDBC 操作数据库的时候一般会先加载驱动。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>为了确保这种机制，Driver 实现类需提供一个无参构造器。</p>
 <h3 id="执行-SQL-语句"><a href="#执行-SQL-语句" class="headerlink" title="执行 SQL 语句"></a>执行 SQL 语句</h3><p>获取到 Connection 对象后，我们就可以通过 Connection 对象设置事务的属性，并且通过 Connection 创建 Statement、PreparedStatement、CallableStatement对象。</p>
 <ul>
 <li><p>Statement</p>
