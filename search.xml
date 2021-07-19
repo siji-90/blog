@@ -69,21 +69,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java null 比较问题</title>
-    <url>/blog/2020/09/20/Java%20null%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>null 不能与数值进行比较。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// null 直接和数据比较， 编译报错</span></span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">null</span> == <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值变量，然后再比较，会抛出 NullPointerException</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line">Integer b = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">boolean</span> flag = a == b;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>原因： == 比较是直接比较内存地址大小，<code>Integer b = null</code>中 b 并未指向任何地址，所以程序会抛出 <code>NullPointerException</code> 。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM 内存结构</title>
     <url>/blog/2021/02/23/JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><ul>
@@ -137,6 +122,21 @@
       </categories>
       <tags>
         <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java null 比较问题</title>
+    <url>/blog/2020/09/20/Java%20null%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>null 不能与数值进行比较。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// null 直接和数据比较， 编译报错</span></span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">null</span> == <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值变量，然后再比较，会抛出 NullPointerException</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line">Integer b = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">boolean</span> flag = a == b;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>原因： == 比较是直接比较内存地址大小，<code>Integer b = null</code>中 b 并未指向任何地址，所以程序会抛出 <code>NullPointerException</code> 。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
