@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Docker 启动 Nginx</title>
-    <url>/blog/2020/10/06/Docker%20%E5%90%AF%E5%8A%A8%20Nginx/</url>
-    <content><![CDATA[<h1 id="Docker-启动-Nginx"><a href="#Docker-启动-Nginx" class="headerlink" title="Docker 启动 Nginx"></a>Docker 启动 Nginx</h1><p> 常规安装可以在官网上找到具体步骤,这里主要是记录 Docker 安装 Nginx</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> docker 拉取 nginx 官方镜像</span></span><br><span class="line">docker pull nginx:latest</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 nginx 容器并挂载目录映射90端口 (建议: 先启动一个容器把需要映射的文件拷贝出来,然后删除容器,重新启动一个容器把文件映射进去)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v 命令表示把外部文件挂载到容器内部,直接启动的话挂载的目录会没有文件!!!</span></span><br><span class="line">docker run -d --name nginx-container -p 90:80 \</span><br><span class="line">-v /data/nginx/conf.d:/etc/nginx/conf.d \</span><br><span class="line">-v /data/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /data/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /data/nginx/log:/var/log/nginx \</span><br><span class="line">--restart=always \</span><br><span class="line">nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>以上就是 docker 启动 nginx 的详细命令</p>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Nginx</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM 内存结构</title>
-    <url>/blog/2021/02/23/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</url>
+    <url>/blog/2021/02/23/JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h2 id="JVM-内存结构"><a href="#JVM-内存结构" class="headerlink" title="JVM 内存结构"></a>JVM 内存结构</h2><ol>
 <li><p>堆</p>
 <blockquote>
@@ -109,27 +93,24 @@
       </tags>
   </entry>
   <entry>
-    <title>Java null 比较问题</title>
-    <url>/blog/2020/09/20/Java%20null%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="Java-null-比较问题"><a href="#Java-null-比较问题" class="headerlink" title="Java null 比较问题"></a>Java null 比较问题</h1><ol>
-<li>null 不能与数值进行比较</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// null 直接和数据比较， 编译报错</span></span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">null</span> == <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值变量，然后再比较，会抛出 NullPointerException</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line">Integer b = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">boolean</span> flag = a == b;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>Docker 启动 Nginx</title>
+    <url>/blog/2020/10/06/Docker%E5%90%AF%E5%8A%A8Nginx/</url>
+    <content><![CDATA[<h1 id="Docker-启动-Nginx"><a href="#Docker-启动-Nginx" class="headerlink" title="Docker 启动 Nginx"></a>Docker 启动 Nginx</h1><p> 常规安装可以在官网上找到具体步骤,这里主要是记录 Docker 安装 Nginx</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> docker 拉取 nginx 官方镜像</span></span><br><span class="line">docker pull nginx:latest</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 nginx 容器并挂载目录映射90端口 (建议: 先启动一个容器把需要映射的文件拷贝出来,然后删除容器,重新启动一个容器把文件映射进去)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v 命令表示把外部文件挂载到容器内部,直接启动的话挂载的目录会没有文件!!!</span></span><br><span class="line">docker run -d --name nginx-container -p 90:80 \</span><br><span class="line">-v /data/nginx/conf.d:/etc/nginx/conf.d \</span><br><span class="line">-v /data/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /data/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /data/nginx/log:/var/log/nginx \</span><br><span class="line">--restart=always \</span><br><span class="line">nginx:latest</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>原因： == 比较是直接比较内存地址大小，<code>Integer b = null</code>中 b 并未指向任何地址，所以程序会抛出 <code>NullPointerException</code> </p>
-</blockquote>
+<p>以上就是 docker 启动 nginx 的详细命令</p>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>Docker</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>Nginx</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
     <title>Linux 远程操作</title>
-    <url>/blog/2020/12/08/Linux%20%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C/</url>
+    <url>/blog/2020/12/08/Linux%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="Linux-远程操作"><a href="#Linux-远程操作" class="headerlink" title="Linux 远程操作"></a>Linux 远程操作</h1><ol>
 <li>远程登录 Linux</li>
 </ol>
@@ -149,8 +130,27 @@
       </tags>
   </entry>
   <entry>
+    <title>Java null 比较问题</title>
+    <url>/blog/2020/09/20/Java%20null%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="Java-null-比较问题"><a href="#Java-null-比较问题" class="headerlink" title="Java null 比较问题"></a>Java null 比较问题</h1><ol>
+<li>null 不能与数值进行比较</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// null 直接和数据比较， 编译报错</span></span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">null</span> == <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值变量，然后再比较，会抛出 NullPointerException</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line">Integer b = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">boolean</span> flag = a == b;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>原因： == 比较是直接比较内存地址大小，<code>Integer b = null</code>中 b 并未指向任何地址，所以程序会抛出 <code>NullPointerException</code> </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Shell 遍历当前文件夹</title>
-    <url>/blog/2020/12/12/Shell%20for%20%E6%8C%87%E4%BB%A4/</url>
+    <url>/blog/2020/12/12/Shell%20for%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="Shell-遍历当前文件夹"><a href="#Shell-遍历当前文件夹" class="headerlink" title="Shell 遍历当前文件夹"></a>Shell 遍历当前文件夹</h1><p>shell for 指令一般使用的格式为:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">for var in item1 item2 ... itemN</span><br><span class="line">do </span><br><span class="line">	command1</span><br><span class="line">done</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以写成一行</span></span><br><span class="line">for var in item1 item2 ... itemN;do comand1 done;</span><br></pre></td></tr></table></figure>
 
@@ -169,8 +169,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Mybatis 优点</title>
+    <url>/blog/2021/03/28/MyBatis%E4%BC%98%E7%82%B9/</url>
+    <content><![CDATA[<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>MyBatis 源于 Aapche 的一个开源项目 iBatis。而 iBatis 是 2002 年 Clinton Begin 开发的一款在持久层使用的半自动 ORM 框架。MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
+</blockquote>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>消除了大量的 JDBC 冗余代码，包括参数设置、结果集封装等。</li>
+<li>SQL 语句可控制，方便查询优化，使用更加灵活。</li>
+<li>学习成本比较低，对于新用户能够快速学习使用。</li>
+<li>提供了与主流 IOC 框架 Spring 的集成支持。</li>
+<li>引入缓存机制，提供了与第三方缓存类库的集成支持。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue data 属性赋值后页面不刷新问题</title>
-    <url>/blog/2021/03/12/Vue%20%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/</url>
+    <url>/blog/2021/03/12/Vue%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/</url>
     <content><![CDATA[<h1 id="Vue-data-属性赋值后页面不刷新问题"><a href="#Vue-data-属性赋值后页面不刷新问题" class="headerlink" title="Vue data 属性赋值后页面不刷新问题"></a>Vue data 属性赋值后页面不刷新问题</h1><p>问题: 由于 javascript 的限制, Vue 不能检测对象和数组的变化.</p>
 <ol>
 <li>对于对象: Vue无法检测 property 的添加或移除。由于 Vue会在初始化实例时对 property 执行 getter/setter 转化，所以 property 必须在 <code>data</code> 对象上存在才能让 Vue 将它转换为响应式的</li>

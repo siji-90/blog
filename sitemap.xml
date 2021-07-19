@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://siji-90.github.io/blog/2021/03/28/MyBatis%E4%BC%98%E7%82%B9/</loc>
+    
+    <lastmod>2021-07-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://siji-90.github.io/blog/2020/10/04/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/</loc>
     
     <lastmod>2021-07-18</lastmod>
@@ -23,35 +30,35 @@
   </url>
   
   <url>
-    <loc>https://siji-90.github.io/blog/2021/02/23/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</loc>
+    <loc>https://siji-90.github.io/blog/2021/02/23/JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</loc>
     
     <lastmod>2021-07-18</lastmod>
     
   </url>
   
   <url>
-    <loc>https://siji-90.github.io/blog/2020/10/06/Docker%20%E5%90%AF%E5%8A%A8%20Nginx/</loc>
+    <loc>https://siji-90.github.io/blog/2020/10/06/Docker%E5%90%AF%E5%8A%A8Nginx/</loc>
     
     <lastmod>2021-07-18</lastmod>
     
   </url>
   
   <url>
-    <loc>https://siji-90.github.io/blog/2021/03/12/Vue%20%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/</loc>
+    <loc>https://siji-90.github.io/blog/2021/03/12/Vue%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/</loc>
     
     <lastmod>2021-07-18</lastmod>
     
   </url>
   
   <url>
-    <loc>https://siji-90.github.io/blog/2020/12/12/Shell%20for%20%E6%8C%87%E4%BB%A4/</loc>
+    <loc>https://siji-90.github.io/blog/2020/12/12/Shell%20for%E6%8C%87%E4%BB%A4/</loc>
     
     <lastmod>2021-07-18</lastmod>
     
   </url>
   
   <url>
-    <loc>https://siji-90.github.io/blog/2020/12/08/Linux%20%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C/</loc>
+    <loc>https://siji-90.github.io/blog/2020/12/08/Linux%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2021-07-18</lastmod>
     
@@ -109,71 +116,78 @@
 
   <url>
     <loc>https://siji-90.github.io/blog</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>https://siji-90.github.io/blog/tags/JVM/</loc>
+    <lastmod>2021-07-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://siji-90.github.io/blog/tags/Nginx/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/tags/Docker/</loc>
-    <lastmod>2021-07-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://siji-90.github.io/blog/tags/JVM/</loc>
-    <lastmod>2021-07-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://siji-90.github.io/blog/tags/Java/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/tags/Linux/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://siji-90.github.io/blog/tags/Java/</loc>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/tags/Shell/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://siji-90.github.io/blog/tags/MyBatis/</loc>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/tags/Web/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/tags/Vue/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -181,43 +195,43 @@
 
   
   <url>
-    <loc>https://siji-90.github.io/blog/categories/Docker/</loc>
-    <lastmod>2021-07-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://siji-90.github.io/blog/categories/JVM/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://siji-90.github.io/blog/categories/Java/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <loc>https://siji-90.github.io/blog/categories/Docker/</loc>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/categories/Linux/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://siji-90.github.io/blog/categories/Java/</loc>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/categories/Vue/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://siji-90.github.io/blog/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2021-07-18</lastmod>
+    <lastmod>2021-07-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

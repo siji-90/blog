@@ -6,7 +6,7 @@
   <link href="https://siji-90.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://siji-90.github.io/blog/"/>
-  <updated>2021-07-18T09:20:39.550Z</updated>
+  <updated>2021-07-19T01:38:55.781Z</updated>
   <id>https://siji-90.github.io/blog/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mybatis 优点</title>
+    <link href="https://siji-90.github.io/blog/2021/03/28/MyBatis%E4%BC%98%E7%82%B9/"/>
+    <id>https://siji-90.github.io/blog/2021/03/28/MyBatis%E4%BC%98%E7%82%B9/</id>
+    <published>2021-03-28T13:30:22.000Z</published>
+    <updated>2021-07-19T01:38:55.781Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote><p>MyBatis 源于 Aapche 的一个开源项目 iBatis。而 iBatis 是 2002 年 Clinton Begin 开发的一款在持久层使用的半自动 ORM 框架。MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p></blockquote><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul><li>消除了大量的 JDBC 冗余代码，包括参数设置、结果集封装等。</li><li>SQL 语句可控制，方便查询优化，使用更加灵活。</li><li>学习成本比较低，对于新用户能够快速学习使用。</li><li>提供了与主流 IOC 框架 Spring 的集成支持。</li><li>引入缓存机制，提供了与第三方缓存类库的集成支持。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;MyBatis&quot;&gt;&lt;a href=&quot;#MyBatis&quot; class=&quot;headerlink&quot; title=&quot;MyBatis&quot;&gt;&lt;/a&gt;MyBatis&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简</summary>
+      
+    
+    
+    
+    
+    <category term="MyBatis" scheme="https://siji-90.github.io/blog/tags/MyBatis/"/>
+    
+  </entry>
   
   <entry>
     <title>数据库Null返回前端变为 -1 问题</title>
@@ -44,8 +66,8 @@
   
   <entry>
     <title>Vue data 属性赋值后页面不刷新问题</title>
-    <link href="https://siji-90.github.io/blog/2021/03/12/Vue%20%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/"/>
-    <id>https://siji-90.github.io/blog/2021/03/12/Vue%20%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/</id>
+    <link href="https://siji-90.github.io/blog/2021/03/12/Vue%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/"/>
+    <id>https://siji-90.github.io/blog/2021/03/12/Vue%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/</id>
     <published>2021-03-12T12:43:32.000Z</published>
     <updated>2021-07-18T09:08:52.815Z</updated>
     
@@ -143,8 +165,8 @@
   
   <entry>
     <title>JVM 内存结构</title>
-    <link href="https://siji-90.github.io/blog/2021/02/23/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/"/>
-    <id>https://siji-90.github.io/blog/2021/02/23/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</id>
+    <link href="https://siji-90.github.io/blog/2021/02/23/JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/"/>
+    <id>https://siji-90.github.io/blog/2021/02/23/JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</id>
     <published>2021-02-23T11:24:21.000Z</published>
     <updated>2021-07-18T09:12:24.925Z</updated>
     
@@ -171,8 +193,8 @@
   
   <entry>
     <title>Shell 遍历当前文件夹</title>
-    <link href="https://siji-90.github.io/blog/2020/12/12/Shell%20for%20%E6%8C%87%E4%BB%A4/"/>
-    <id>https://siji-90.github.io/blog/2020/12/12/Shell%20for%20%E6%8C%87%E4%BB%A4/</id>
+    <link href="https://siji-90.github.io/blog/2020/12/12/Shell%20for%E6%8C%87%E4%BB%A4/"/>
+    <id>https://siji-90.github.io/blog/2020/12/12/Shell%20for%E6%8C%87%E4%BB%A4/</id>
     <published>2020-12-12T10:52:38.000Z</published>
     <updated>2021-07-18T09:07:41.550Z</updated>
     
@@ -198,8 +220,8 @@
   
   <entry>
     <title>Linux 远程操作</title>
-    <link href="https://siji-90.github.io/blog/2020/12/08/Linux%20%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C/"/>
-    <id>https://siji-90.github.io/blog/2020/12/08/Linux%20%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C/</id>
+    <link href="https://siji-90.github.io/blog/2020/12/08/Linux%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C/"/>
+    <id>https://siji-90.github.io/blog/2020/12/08/Linux%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C/</id>
     <published>2020-12-08T01:32:08.000Z</published>
     <updated>2021-07-18T09:06:11.921Z</updated>
     
@@ -225,8 +247,8 @@
   
   <entry>
     <title>Docker 启动 Nginx</title>
-    <link href="https://siji-90.github.io/blog/2020/10/06/Docker%20%E5%90%AF%E5%8A%A8%20Nginx/"/>
-    <id>https://siji-90.github.io/blog/2020/10/06/Docker%20%E5%90%AF%E5%8A%A8%20Nginx/</id>
+    <link href="https://siji-90.github.io/blog/2020/10/06/Docker%E5%90%AF%E5%8A%A8Nginx/"/>
+    <id>https://siji-90.github.io/blog/2020/10/06/Docker%E5%90%AF%E5%8A%A8Nginx/</id>
     <published>2020-10-06T10:34:24.000Z</published>
     <updated>2021-07-18T09:12:13.114Z</updated>
     
