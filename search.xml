@@ -221,20 +221,6 @@
       </tags>
   </entry>
   <entry>
-    <title>数据库Null返回前端变为 -1 问题</title>
-    <url>/blog/2021/03/18/%E6%95%B0%E6%8D%AE%E5%BA%93Null%E8%BF%94%E5%9B%9E%E5%89%8D%E7%AB%AF%E5%8F%98%E4%B8%BA%20-1%20%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在实体类上加上这个注解，使用 ToStringSerializer 序列化器</span></span><br><span class="line"><span class="meta">@JsonSerialize(using = ToStringSerializer.class)</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>存储设备划分</title>
     <url>/blog/2020/10/04/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/</url>
     <content><![CDATA[<h2 id="存储设备的层次"><a href="#存储设备的层次" class="headerlink" title="存储设备的层次"></a>存储设备的层次</h2><p><img src="/blog/img/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87%E7%9A%84%E5%B1%82%E6%AC%A1.png" alt="存储设备层次"></p>
@@ -251,6 +237,20 @@
       </categories>
       <tags>
         <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据库Null返回前端变为 -1 问题</title>
+    <url>/blog/2021/03/18/%E6%95%B0%E6%8D%AE%E5%BA%93Null%E8%BF%94%E5%9B%9E%E5%89%8D%E7%AB%AF%E5%8F%98%E4%B8%BA%20-1%20%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在实体类上加上这个注解，使用 ToStringSerializer 序列化器</span></span><br><span class="line"><span class="meta">@JsonSerialize(using = ToStringSerializer.class)</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
