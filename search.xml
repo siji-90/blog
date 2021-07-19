@@ -204,7 +204,7 @@
   </entry>
   <entry>
     <title>Mybatis 简介</title>
-    <url>/blog/2021/03/28/MyBatis%E7%AE%80%E4%BB%8B/</url>
+    <url>/blog/2020/12/24/MyBatis%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
 <p>MyBatis 源于 Aapche 的一个开源项目 iBatis。而 iBatis 是 2002 年 Clinton Begin 开发的一款在持久层使用的半自动 ORM 框架。MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
 </blockquote>
