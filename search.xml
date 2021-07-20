@@ -483,7 +483,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Mybatis 核心组件 StatementHandler</title>
+    <title>Mybatis 核心组件 ParameterHandler</title>
     <url>/blog/2020/12/29/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6ParameterHandler/</url>
     <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>ParameterHandler 组件是为了在调用 PreparedStatementHandler 和 CallableStatementHandler 执行数据库交互之前为参数占位符设置值。其接口定义如下：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ParameterHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取执行 Mapper 时传入的参数对象  </span></span><br><span class="line">  <span class="function">Object <span class="title">getParameterObject</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 为参数占位符设置值  </span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setParameters</span><span class="params">(PreparedStatement ps)</span> <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
