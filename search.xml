@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker 启动 Nginx</title>
+    <url>/blog/2020/10/06/Docker%E5%90%AF%E5%8A%A8Nginx/</url>
+    <content><![CDATA[<p>常规安装可以在官网上找到具体步骤,这里主要是记录 Docker 安装 Nginx</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> docker 拉取 nginx 官方镜像</span></span><br><span class="line">docker pull nginx:latest</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 nginx 容器并挂载目录映射90端口 (建议: 先启动一个容器把需要映射的文件拷贝出来,然后删除容器,重新启动一个容器把文件映射进去)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v 命令表示把外部文件挂载到容器内部,直接启动的话挂载的目录会没有文件!!!</span></span><br><span class="line">docker run -d --name nginx-container -p 90:80 \</span><br><span class="line">-v /data/nginx/conf.d:/etc/nginx/conf.d \</span><br><span class="line">-v /data/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /data/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /data/nginx/log:/var/log/nginx \</span><br><span class="line">--restart=always \</span><br><span class="line">nginx:latest</span><br></pre></td></tr></table></figure>
+
+<p>以上就是 docker 启动 nginx 的详细命令</p>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Nginx</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JDBC 简介</title>
     <url>/blog/2020/12/20/JDBC%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
@@ -54,22 +70,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Docker 启动 Nginx</title>
-    <url>/blog/2020/10/06/Docker%E5%90%AF%E5%8A%A8Nginx/</url>
-    <content><![CDATA[<p>常规安装可以在官网上找到具体步骤,这里主要是记录 Docker 安装 Nginx</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> docker 拉取 nginx 官方镜像</span></span><br><span class="line">docker pull nginx:latest</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动 nginx 容器并挂载目录映射90端口 (建议: 先启动一个容器把需要映射的文件拷贝出来,然后删除容器,重新启动一个容器把文件映射进去)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v 命令表示把外部文件挂载到容器内部,直接启动的话挂载的目录会没有文件!!!</span></span><br><span class="line">docker run -d --name nginx-container -p 90:80 \</span><br><span class="line">-v /data/nginx/conf.d:/etc/nginx/conf.d \</span><br><span class="line">-v /data/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">-v /data/nginx/html:/usr/share/nginx/html \</span><br><span class="line">-v /data/nginx/log:/var/log/nginx \</span><br><span class="line">--restart=always \</span><br><span class="line">nginx:latest</span><br></pre></td></tr></table></figure>
-
-<p>以上就是 docker 启动 nginx 的详细命令</p>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Nginx</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JDBC 驱动注册</title>
     <url>/blog/2020/12/23/JDBC%E9%A9%B1%E5%8A%A8%E6%B3%A8%E5%86%8C/</url>
     <content><![CDATA[<h2 id="java-sql-Driver-接口"><a href="#java-sql-Driver-接口" class="headerlink" title="java.sql.Driver 接口"></a>java.sql.Driver 接口</h2><p>所有的 JDBC 驱动都必须实现 Driver 接口，且实现类必须包含一个静态初始化代码块。驱动实现类须在静态初始化代码块中向 DriverManager 注册自己的一个实例。例如：</p>
@@ -114,21 +114,6 @@
       <tags>
         <tag>JDBC</tag>
         <tag>SPI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java null 比较问题</title>
-    <url>/blog/2020/09/20/Java%20null%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>null 不能与数值进行比较。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// null 直接和数据比较， 编译报错</span></span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">null</span> == <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值变量，然后再比较，会抛出 NullPointerException</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line">Integer b = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">boolean</span> flag = a == b;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>原因： == 比较是直接比较内存地址大小，<code>Integer b = null</code>中 b 并未指向任何地址，所以程序会抛出 <code>NullPointerException</code> 。</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -185,6 +170,21 @@
       </categories>
       <tags>
         <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java null 比较问题</title>
+    <url>/blog/2020/09/20/Java%20null%E6%AF%94%E8%BE%83%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>null 不能与数值进行比较。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// null 直接和数据比较， 编译报错</span></span><br><span class="line"><span class="keyword">boolean</span> flag = <span class="keyword">null</span> == <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值变量，然后再比较，会抛出 NullPointerException</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line">Integer b = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">boolean</span> flag = a == b;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>原因： == 比较是直接比较内存地址大小，<code>Integer b = null</code>中 b 并未指向任何地址，所以程序会抛出 <code>NullPointerException</code> 。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -505,9 +505,82 @@
       </tags>
   </entry>
   <entry>
-    <title>Mybatis 简介</title>
+    <title>Mybatis 核心组件 StatementHandler</title>
     <url>/blog/2020/12/27/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6StatementHandler/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="StatementHandler-简介"><a href="#StatementHandler-简介" class="headerlink" title="StatementHandler 简介"></a>StatementHandler 简介</h2><p>MyBatis StatementHandler 组件封装了对 JDBC Statement 的操作，其接口定义如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StatementHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function">Statement <span class="title">prepare</span><span class="params">(Connection connection, Integer transactionTimeout)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">parameterize</span><span class="params">(Statement statement)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">batch</span><span class="params">(Statement statement)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">update</span><span class="params">(Statement statement)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line">  &lt;E&gt; <span class="function">List&lt;E&gt; <span class="title">query</span><span class="params">(Statement statement, ResultHandler resultHandler)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line">  &lt;E&gt; <span class="function">Cursor&lt;E&gt; <span class="title">queryCursor</span><span class="params">(Statement statement)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> SQLException</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">BoundSql <span class="title">getBoundSql</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">ParameterHandler <span class="title">getParameterHandler</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>prepare</code></td>
+<td>该方法用于创建 JDBC Statement 对象，并完成 Statement 对象的属性设置。</td>
+</tr>
+<tr>
+<td><code>parameterize</code></td>
+<td>该方法使用 MyBatis 中的 ParameterHandle r组件为 PreparedStatement 和 CallableStatement 参数占位符设置值。</td>
+</tr>
+<tr>
+<td><code>batch</code></td>
+<td>将SQL命令添加到批处量执行列表中。</td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td>调用 Statement 对象的 execute() 方法执行更新语句，例如 UPDATE、INSERT、DELETE 语句。</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td>执行查询语句，并使用 ResultSetHandler 处理查询结果集。</td>
+</tr>
+<tr>
+<td><code>queryCursor</code></td>
+<td>带游标的查询，返回 Cursor 对象，能够通过 Iterator 动态地从数据库中加载数据，适用于查询数据量较大的情况，避免将所有数据加载到内存中。</td>
+</tr>
+<tr>
+<td><code>getBoundSql</code></td>
+<td>获取 Mapper 中配置的 SQL 信息，BoundSql 封装了动态 SQL 解析后的 SQL 文本和参数映射信息。</td>
+</tr>
+<tr>
+<td><code>getParameterHandler</code></td>
+<td>获取 ParameterHandler 实例。</td>
+</tr>
+</tbody></table>
+<p>StatementHandler 接口有多种实现，如下图所示：</p>
+<p><img src="/blog/img/StatementHandler%E6%8E%A5%E5%8F%A3.png" alt="StatementHandler 接口继承关系图"></p>
+<h2 id="实现类介绍"><a href="#实现类介绍" class="headerlink" title="实现类介绍"></a>实现类介绍</h2><table>
+<thead>
+<tr>
+<th>实现类</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>BaseStatementHandler</code></td>
+<td>抽象类，封装了通用的处理逻辑及方法执行流程，具体方法的实现由子类完成，这里使用到了设计模式中的模板方法模式。</td>
+</tr>
+<tr>
+<td><code>SimpleStatementHandler</code></td>
+<td>继承至 BaseStatementHandler，封装了对JDBCStatement对象的操作</td>
+</tr>
+<tr>
+<td><code>PreparedStatementHandler</code></td>
+<td>继承至 BaseStatementHandler，封装了对JDBCPreparedStatement对象的操作</td>
+</tr>
+<tr>
+<td><code>CallableStatementHandler</code></td>
+<td>继承至 BaseStatementHandler，封装了对JDBCCallableStatement对象的操作</td>
+</tr>
+<tr>
+<td><code>RoutingStatementHandler</code></td>
+<td>根据 Mapper 配置中的 statementType 属性（取值为 STATEMENT、PREPARED 或 CALLABLE）创建对应的 StatementHandler实现。</td>
+</tr>
+</tbody></table>
+]]></content>
       <categories>
         <category>MyBatis</category>
       </categories>
@@ -557,34 +630,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue data 属性赋值后页面不刷新问题</title>
-    <url>/blog/2021/03/12/Vue%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/</url>
-    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于 javascript 的限制, Vue 不能检测对象和数组的变化.</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ul>
-<li><p>对象</p>
-<p>Vue无法检测对象 property 的添加或移除。由于 Vue会在初始化实例时对 property 执行 getter/setter 转化，所以 property 必须在 <code>data</code> 对象上存在才能让 Vue 将它转换为响应式的</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这种 Vue 页面是不会动态刷新的, 参考 https://cn.Vuejs.org/v2/guide/reactivity.html</span></span><br><span class="line">vm.obj.field = value</span><br><span class="line"></span><br><span class="line"><span class="comment">// 推荐方式, 此种方式可进行响应式渲染</span></span><br><span class="line"><span class="built_in">this</span>.$set(vm.obj, <span class="string">&#x27;field&#x27;</span>, value)</span><br><span class="line"></span><br><span class="line">vm.obj = <span class="built_in">Object</span>.assign(&#123;&#125;, vm.obj, &#123; value &#125;)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>对于数组</p>
-<p>当你利用索引直接设置一个数组项或者修改数组长度时, Vue 不能检测到数组的变动</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 同上, 这种更改数组 Vue 页面是不会进行动态刷新的</span></span><br><span class="line">vm.arr.indexOfArr = value</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下两种方式可进行动态刷新 </span></span><br><span class="line"><span class="built_in">this</span>.$set(vm.arr, indexOfArr, value)</span><br><span class="line"></span><br><span class="line">vm.arr.splice(indexOfArr, <span class="number">1</span>, value)</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于 Vue 页面不动态刷新的问题可以参数 Vue 官方文档#<a href="https://cn.vuejs.org/v2/guide/reactivity.html">深入响应式原理相关内容</a></p>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring Boot 创建 starter</title>
     <url>/blog/2021/03/21/Spring%20Boot%E5%88%9B%E5%BB%BAstarter/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Spring Boot 之所以能够流行，Spring starter 模式功不可没。Spring starter 的出现，可以让模块的开发更加独立化，更方便集成到应用中。比如像创建一个 web 项目，直接创建 Spring Boot 项目，然后引入以下依赖即可：</p>
@@ -618,6 +663,34 @@
       </categories>
       <tags>
         <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue data 属性赋值后页面不刷新问题</title>
+    <url>/blog/2021/03/12/Vue%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于 javascript 的限制, Vue 不能检测对象和数组的变化.</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ul>
+<li><p>对象</p>
+<p>Vue无法检测对象 property 的添加或移除。由于 Vue会在初始化实例时对 property 执行 getter/setter 转化，所以 property 必须在 <code>data</code> 对象上存在才能让 Vue 将它转换为响应式的</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这种 Vue 页面是不会动态刷新的, 参考 https://cn.Vuejs.org/v2/guide/reactivity.html</span></span><br><span class="line">vm.obj.field = value</span><br><span class="line"></span><br><span class="line"><span class="comment">// 推荐方式, 此种方式可进行响应式渲染</span></span><br><span class="line"><span class="built_in">this</span>.$set(vm.obj, <span class="string">&#x27;field&#x27;</span>, value)</span><br><span class="line"></span><br><span class="line">vm.obj = <span class="built_in">Object</span>.assign(&#123;&#125;, vm.obj, &#123; value &#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>对于数组</p>
+<p>当你利用索引直接设置一个数组项或者修改数组长度时, Vue 不能检测到数组的变动</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 同上, 这种更改数组 Vue 页面是不会进行动态刷新的</span></span><br><span class="line">vm.arr.indexOfArr = value</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下两种方式可进行动态刷新 </span></span><br><span class="line"><span class="built_in">this</span>.$set(vm.arr, indexOfArr, value)</span><br><span class="line"></span><br><span class="line">vm.arr.splice(indexOfArr, <span class="number">1</span>, value)</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于 Vue 页面不动态刷新的问题可以参数 Vue 官方文档#<a href="https://cn.vuejs.org/v2/guide/reactivity.html">深入响应式原理相关内容</a></p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -666,6 +739,20 @@
       </tags>
   </entry>
   <entry>
+    <title>数据库Null返回前端变为 -1 问题</title>
+    <url>/blog/2021/03/18/%E6%95%B0%E6%8D%AE%E5%BA%93Null%E8%BF%94%E5%9B%9E%E5%89%8D%E7%AB%AF%E5%8F%98%E4%B8%BA%20-1%20%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在实体类上加上这个注解，使用 ToStringSerializer 序列化器</span></span><br><span class="line"><span class="meta">@JsonSerialize(using = ToStringSerializer.class)</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM 类加载器</title>
     <url>/blog/2021/03/02/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</url>
     <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>&emsp;Java 虚拟机设计团队有意把类加载阶段中的 “通过一个类的全限定名来获取描述该类的二进制字节流” 这个动态放到 Java 虚拟机外部去实现，以便让应用程序自己决定如何去获取所需的类。实现这个动作的代码被称为类加载器。</p>
@@ -699,20 +786,6 @@
       </categories>
       <tags>
         <tag>JVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库Null返回前端变为 -1 问题</title>
-    <url>/blog/2021/03/18/%E6%95%B0%E6%8D%AE%E5%BA%93Null%E8%BF%94%E5%9B%9E%E5%89%8D%E7%AB%AF%E5%8F%98%E4%B8%BA%20-1%20%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在实体类上加上这个注解，使用 ToStringSerializer 序列化器</span></span><br><span class="line"><span class="meta">@JsonSerialize(using = ToStringSerializer.class)</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Web</tag>
       </tags>
   </entry>
   <entry>
