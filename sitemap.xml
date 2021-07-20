@@ -2,7 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://siji-90.github.io/blog/2020/12/24/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Configuration/</loc>
+    <loc>https://siji-90.github.io/blog/2020/12/24/MyBatis%E7%AE%80%E4%BB%8B/</loc>
+    
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://siji-90.github.io/blog/2020/12/26/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6MappedStatement/</loc>
     
     <lastmod>2021-07-20</lastmod>
     
@@ -16,7 +23,7 @@
   </url>
   
   <url>
-    <loc>https://siji-90.github.io/blog/2020/12/24/MyBatis%E7%AE%80%E4%BB%8B/</loc>
+    <loc>https://siji-90.github.io/blog/2020/12/24/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Configuration/</loc>
     
     <lastmod>2021-07-20</lastmod>
     
