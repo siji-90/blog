@@ -450,6 +450,42 @@
       </tags>
   </entry>
   <entry>
+    <title>JVM 类加载器</title>
+    <url>/blog/2021/03/02/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</url>
+    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>&emsp;Java 虚拟机设计团队有意把类加载阶段中的 “通过一个类的全限定名来获取描述该类的二进制字节流” 这个动态放到 Java 虚拟机外部去实现，以便让应用程序自己决定如何去获取所需的类。实现这个动作的代码被称为类加载器。</p>
+<p>&emsp;类加载器虽然只用于实现类的加载动态，但是它在 Java 程序中所起到的作用却远超过类加载阶段。对于任意一个类，都必须由加载它的类加载器和这个类本身一个共同确立其在 Java 虚拟机中的唯一性。每一个加载器都拥有一个独立的类名称空间。<strong>比较两个类是否 “相等”，只有在这两个类是同一个加载器加载的前提下才有意义，加载器不同，两个类必定不相等</strong>。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li><p>&emsp;从虚拟机的角度来看，只存在两种不同的类加载器：</p>
+<p>1） 启动类加载器（Bootstrap Class Loader），由 C++ 语言实现，是虚拟机自身的一部分。</p>
+<p>2） 其他所有类加载器，由 Java 语言实现，独立存在虚拟机外部，全部继承自抽象类 <code>java.lang.ClassLoader</code>。</p>
+</li>
+<li><p>从 Java 开发人员来看，则应该划分得更仔细一些。<strong>自 JDK 1. 2 以来， Java 一直保持着三层类加载器、双亲委派的类加载架构</strong>。</p>
+</li>
+</ul>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="启动类加载器（Bootstrap-Class-Loader"><a href="#启动类加载器（Bootstrap-Class-Loader" class="headerlink" title="启动类加载器（Bootstrap Class Loader)"></a>启动类加载器（Bootstrap Class Loader)</h3><p>&emsp;负责加载存在在 JAVA_HOME\lib 目录，或者被 -Xbootclasspath 参数所指定的路径中存放的，而且时 Java 虚拟机能够识别的（按照文件名识别，如 rt.jar, tools.jar, 名字不符合的类库即使放在 lib 目录中也不会被加载）类库加载到虚拟机的内存中。启动类加载器无法被 Java 程序直接引用，用户在编写自定义类加载器时，如果需要把加载请求委派给引导类加载器去处理，那直接使用 null 代替即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">Returns the class loader for the class. Some implementations may use null to represent the bootstrap class loader. */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ClassLoader <span class="title">getClassLoader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ClassLoader cl = getClassLoader0();</span><br><span class="line">	<span class="keyword">if</span> (cl == <span class="keyword">null</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	SecurityManager sm = System.getSecurityManager();</span><br><span class="line">	<span class="keyword">if</span> (sm != <span class="keyword">null</span>) &#123;</span><br><span class="line">		ClassLoader ccl = ClassLoader.getCallerClassLoader();</span><br><span class="line">		<span class="keyword">if</span> (ccl != <span class="keyword">null</span> &amp;&amp; ccl != cl &amp;&amp; !cl.isAncestor(ccl)) &#123;</span><br><span class="line">			sm.checkPermission(SecurityConstants.GET_CLASSLOADER_PERMISSION);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类加载器（Extension-Class-Loader"><a href="#扩展类加载器（Extension-Class-Loader" class="headerlink" title="扩展类加载器（Extension Class Loader)"></a>扩展类加载器（Extension Class Loader)</h3><p>&emsp;由  <code>sun.misc.Launcher$ExtClassLoader实现</code>，负责加载 JAVA_HOME\lib\ext 目录中，被 <code>java.ext.dirs</code> 系统变量所指定的路径中所有的类库。由于扩展类加载器是由 Java 代码来实现的，所以开发者可以直接在程序中使用扩展类加载器来加载文件。</p>
+<h3 id="应用程序类加载器（Application-Class-Loader"><a href="#应用程序类加载器（Application-Class-Loader" class="headerlink" title="应用程序类加载器（Application Class Loader)"></a>应用程序类加载器（Application Class Loader)</h3><p>&emsp;由 <code>sun.misc.Launcher$AppClassLoader</code> 实现。是 <code>ClassLoader</code> 类中的 <code>getSystemClassLoader()</code> 方法的返回值，所以有些场合也称它为 “系统类加载器”。它负责加载用户类路径上所有的类库，一般情况下是程序中默认的类加载器。</p>
+<p>模型图如下所示：<img src="/blog/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.png" alt="类加载双亲委派模型图"></p>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>&emsp;<strong>双亲委派模型要求除了顶层的启动类加载器外，其余的类加载器都应有自己的父类加载器。不过类加载器之间的父子关系一般不是以继承的关系来实现的，而是通常使用组合关系来复用父加载器的代码。</strong></p>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>&emsp; <strong>如果一个类加载器收到了类加载请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到最顶层的启动类加载器中，<u>只有当父类加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时</u>，子加载器才会尝试自己去完成加载</strong>。</p>
+<blockquote>
+<p>好处：</p>
+<p>​        Java 中的类随着它的类加载器一起具备了一种优先级的层次关系。保证了 Java 的类型体系。对 Java 程序的稳定运作极为重要。</p>
+</blockquote>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">synchronized</span> Class&lt;?&gt; loadClass(string name, <span class="keyword">boolean</span> resolve) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">    <span class="comment">// 首先，检查请求的类是否被加载过了</span></span><br><span class="line">    Class c = findLoadedClass(name);</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                c = findBootstrapClassOrNull(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            <span class="comment">// 如果父类加载器抛出 ClassNotFoundException，说明父类加载器无法完成加载请求</span></span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">        	<span class="comment">// 在父类加载器无法加载时，再调用本身的 findClass 方法来进行类加载</span></span><br><span class="line">            c = findClass(name);</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(resolve) &#123;</span><br><span class="line">        resolveClass(c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="代码逻辑"><a href="#代码逻辑" class="headerlink" title="代码逻辑"></a>代码逻辑</h4><p>&emsp;<strong>先检查请求的类型是否已经被加载过，若没有则调用父类加载器的 <code>loadClass()</code>，若父类加载器为空则默认使用启动类加载器作为父类加载器。如果父类加载器加载失败，抛出 <code>ClassNotFoundException</code>异常的话，才会调用自己的 <code>findClass()</code>方法尝试进行加载</strong>。</p>
+]]></content>
+      <categories>
+        <category>JVM</category>
+      </categories>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM 类加载过程</title>
     <url>/blog/2021/03/05/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<p><strong>类加载过程分为7个阶段。加载、验证、准备、解析、初始化、使用、卸载。其中验证、准备、解析统称为连接</strong>。</p>
@@ -579,42 +615,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM 类加载器</title>
-    <url>/blog/2021/03/02/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</url>
-    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>&emsp;Java 虚拟机设计团队有意把类加载阶段中的 “通过一个类的全限定名来获取描述该类的二进制字节流” 这个动态放到 Java 虚拟机外部去实现，以便让应用程序自己决定如何去获取所需的类。实现这个动作的代码被称为类加载器。</p>
-<p>&emsp;类加载器虽然只用于实现类的加载动态，但是它在 Java 程序中所起到的作用却远超过类加载阶段。对于任意一个类，都必须由加载它的类加载器和这个类本身一个共同确立其在 Java 虚拟机中的唯一性。每一个加载器都拥有一个独立的类名称空间。<strong>比较两个类是否 “相等”，只有在这两个类是同一个加载器加载的前提下才有意义，加载器不同，两个类必定不相等</strong>。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
-<li><p>&emsp;从虚拟机的角度来看，只存在两种不同的类加载器：</p>
-<p>1） 启动类加载器（Bootstrap Class Loader），由 C++ 语言实现，是虚拟机自身的一部分。</p>
-<p>2） 其他所有类加载器，由 Java 语言实现，独立存在虚拟机外部，全部继承自抽象类 <code>java.lang.ClassLoader</code>。</p>
-</li>
-<li><p>从 Java 开发人员来看，则应该划分得更仔细一些。<strong>自 JDK 1. 2 以来， Java 一直保持着三层类加载器、双亲委派的类加载架构</strong>。</p>
-</li>
-</ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="启动类加载器（Bootstrap-Class-Loader"><a href="#启动类加载器（Bootstrap-Class-Loader" class="headerlink" title="启动类加载器（Bootstrap Class Loader)"></a>启动类加载器（Bootstrap Class Loader)</h3><p>&emsp;负责加载存在在 JAVA_HOME\lib 目录，或者被 -Xbootclasspath 参数所指定的路径中存放的，而且时 Java 虚拟机能够识别的（按照文件名识别，如 rt.jar, tools.jar, 名字不符合的类库即使放在 lib 目录中也不会被加载）类库加载到虚拟机的内存中。启动类加载器无法被 Java 程序直接引用，用户在编写自定义类加载器时，如果需要把加载请求委派给引导类加载器去处理，那直接使用 null 代替即可。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">Returns the class loader for the class. Some implementations may use null to represent the bootstrap class loader. */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ClassLoader <span class="title">getClassLoader</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ClassLoader cl = getClassLoader0();</span><br><span class="line">	<span class="keyword">if</span> (cl == <span class="keyword">null</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	SecurityManager sm = System.getSecurityManager();</span><br><span class="line">	<span class="keyword">if</span> (sm != <span class="keyword">null</span>) &#123;</span><br><span class="line">		ClassLoader ccl = ClassLoader.getCallerClassLoader();</span><br><span class="line">		<span class="keyword">if</span> (ccl != <span class="keyword">null</span> &amp;&amp; ccl != cl &amp;&amp; !cl.isAncestor(ccl)) &#123;</span><br><span class="line">			sm.checkPermission(SecurityConstants.GET_CLASSLOADER_PERMISSION);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="扩展类加载器（Extension-Class-Loader"><a href="#扩展类加载器（Extension-Class-Loader" class="headerlink" title="扩展类加载器（Extension Class Loader)"></a>扩展类加载器（Extension Class Loader)</h3><p>&emsp;由  <code>sun.misc.Launcher$ExtClassLoader实现</code>，负责加载 JAVA_HOME\lib\ext 目录中，被 <code>java.ext.dirs</code> 系统变量所指定的路径中所有的类库。由于扩展类加载器是由 Java 代码来实现的，所以开发者可以直接在程序中使用扩展类加载器来加载文件。</p>
-<h3 id="应用程序类加载器（Application-Class-Loader"><a href="#应用程序类加载器（Application-Class-Loader" class="headerlink" title="应用程序类加载器（Application Class Loader)"></a>应用程序类加载器（Application Class Loader)</h3><p>&emsp;由 <code>sun.misc.Launcher$AppClassLoader</code> 实现。是 <code>ClassLoader</code> 类中的 <code>getSystemClassLoader()</code> 方法的返回值，所以有些场合也称它为 “系统类加载器”。它负责加载用户类路径上所有的类库，一般情况下是程序中默认的类加载器。</p>
-<p>模型图如下所示：<img src="/blog/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.png" alt="类加载双亲委派模型图"></p>
-<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>&emsp;<strong>双亲委派模型要求除了顶层的启动类加载器外，其余的类加载器都应有自己的父类加载器。不过类加载器之间的父子关系一般不是以继承的关系来实现的，而是通常使用组合关系来复用父加载器的代码。</strong></p>
-<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>&emsp; <strong>如果一个类加载器收到了类加载请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到最顶层的启动类加载器中，<u>只有当父类加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时</u>，子加载器才会尝试自己去完成加载</strong>。</p>
-<blockquote>
-<p>好处：</p>
-<p>​        Java 中的类随着它的类加载器一起具备了一种优先级的层次关系。保证了 Java 的类型体系。对 Java 程序的稳定运作极为重要。</p>
-</blockquote>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">synchronized</span> Class&lt;?&gt; loadClass(string name, <span class="keyword">boolean</span> resolve) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">    <span class="comment">// 首先，检查请求的类是否被加载过了</span></span><br><span class="line">    Class c = findLoadedClass(name);</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                c = findBootstrapClassOrNull(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            <span class="comment">// 如果父类加载器抛出 ClassNotFoundException，说明父类加载器无法完成加载请求</span></span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">        	<span class="comment">// 在父类加载器无法加载时，再调用本身的 findClass 方法来进行类加载</span></span><br><span class="line">            c = findClass(name);</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(resolve) &#123;</span><br><span class="line">        resolveClass(c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="代码逻辑"><a href="#代码逻辑" class="headerlink" title="代码逻辑"></a>代码逻辑</h4><p>&emsp;<strong>先检查请求的类型是否已经被加载过，若没有则调用父类加载器的 <code>loadClass()</code>，若父类加载器为空则默认使用启动类加载器作为父类加载器。如果父类加载器加载失败，抛出 <code>ClassNotFoundException</code>异常的话，才会调用自己的 <code>findClass()</code>方法尝试进行加载</strong>。</p>
-]]></content>
-      <categories>
-        <category>JVM</category>
-      </categories>
-      <tags>
-        <tag>JVM</tag>
       </tags>
   </entry>
 </search>
