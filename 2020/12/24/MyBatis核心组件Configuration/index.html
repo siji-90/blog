@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mybatis 核心组件 Configuration | SiJi's Blog</title><meta name="keywords" content="MyBatis"><meta name="author" content="四季"><meta name="copyright" content="四季"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Configuration 简介MyBatis 框架的配置信息有两种类型，一种是 Mybatis 框架属性的主配置文件，另外一种则是大家耳熟能详的配置执行 SQL 语句的 Mapper 配置文件。而 Configuration 类的作用正是描述 MyBatis 的主配置文件信息。比如以下属性： 12345678910111213141516171819202122232425262728prote">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis 核心组件 Configuration">
+<meta property="og:url" content="https://siji-90.github.io/blog/2020/12/24/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Configuration/index.html">
+<meta property="og:site_name" content="SiJi&#39;s Blog">
+<meta property="og:description" content="Configuration 简介MyBatis 框架的配置信息有两种类型，一种是 Mybatis 框架属性的主配置文件，另外一种则是大家耳熟能详的配置执行 SQL 语句的 Mapper 配置文件。而 Configuration 类的作用正是描述 MyBatis 的主配置文件信息。比如以下属性： 12345678910111213141516171819202122232425262728prote">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://siji-90.github.io/blog/img/bg.jpg">
+<meta property="article:published_time" content="2020-12-24T13:30:22.000Z">
+<meta property="article:modified_time" content="2021-07-19T23:41:41.650Z">
+<meta property="article:author" content="四季">
+<meta property="article:tag" content="MyBatis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://siji-90.github.io/blog/img/bg.jpg"><link rel="shortcut icon" href="/blog/img/favicon.ico"><link rel="canonical" href="https://siji-90.github.io/blog/2020/12/24/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Configuration/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mybatis 核心组件 Configuration',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-20 07:41:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="SiJi's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/blog/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/bg.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">SiJi's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Mybatis 核心组件 Configuration</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-24T13:30:22.000Z" title="发表于 2020-12-24 21:30:22">2020-12-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-07-19T23:41:41.650Z" title="更新于 2021-07-20 07:41:41">2021-07-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Mybatis 核心组件 Configuration"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Configuration-简介"><a href="#Configuration-简介" class="headerlink" title="Configuration 简介"></a>Configuration 简介</h2><p>MyBatis 框架的配置信息有两种类型，一种是 Mybatis 框架属性的主配置文件，另外一种则是大家耳熟能详的配置执行 SQL 语句的 Mapper 配置文件。而 Configuration 类的作用正是描述 MyBatis 的主配置文件信息。比如以下属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> safeRowBoundsEnabled;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> safeResultHandlerEnabled = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> mapUnderscoreToCamelCase;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> aggressiveLazyLoading;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> multipleResultSetsEnabled = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> useGeneratedKeys;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> useColumnLabel = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> cacheEnabled = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> callSettersOnNulls;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> useActualParamName = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> returnInstanceForEmptyRow;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">boolean</span> shrinkWhitespacesInSql;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> String logPrefix;</span><br><span class="line"><span class="keyword">protected</span> Class&lt;? extends Log&gt; logImpl;</span><br><span class="line"><span class="keyword">protected</span> Class&lt;? extends VFS&gt; vfsImpl;</span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; defaultSqlProviderType;</span><br><span class="line"><span class="keyword">protected</span> LocalCacheScope localCacheScope = LocalCacheScope.SESSION;</span><br><span class="line"><span class="keyword">protected</span> JdbcType jdbcTypeForNull = JdbcType.OTHER;</span><br><span class="line"><span class="keyword">protected</span> Set&lt;String&gt; lazyLoadTriggerMethods = <span class="keyword">new</span> HashSet&lt;&gt;(Arrays.asList(<span class="string">&quot;equals&quot;</span>, <span class="string">&quot;clone&quot;</span>, <span class="string">&quot;hashCode&quot;</span>, <span class="string">&quot;toString&quot;</span>));</span><br><span class="line"><span class="keyword">protected</span> Integer defaultStatementTimeout;</span><br><span class="line"><span class="keyword">protected</span> Integer defaultFetchSize;</span><br><span class="line"><span class="keyword">protected</span> ResultSetType defaultResultSetType;</span><br><span class="line"><span class="keyword">protected</span> ExecutorType defaultExecutorType = ExecutorType.SIMPLE;</span><br><span class="line"><span class="keyword">protected</span> AutoMappingBehavior autoMappingBehavior = AutoMappingBehavior.PARTIAL;</span><br><span class="line"><span class="keyword">protected</span> AutoMappingUnknownColumnBehavior autoMappingUnknownColumnBehavior = AutoMappingUnknownColumnBehavior.NONE;</span><br><span class="line"><span class="keyword">protected</span> String databaseId;</span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; configurationFactory;</span><br></pre></td></tr></table></figure>
+
+<p>以上属性值都可以在 MyBatis 主配置文件中通过 &lt;setting&gt; 标签指定, 例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 关闭 Mapper 二级缓存 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;cacheEnabled&quot;</span> <span class="attr">value</span>=<span class="string">&quot;false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">setting</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开启懒加载 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;lazyLoadingEnabled&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">setting</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Configuration 类除了提供以上属性控制 MyBatis 行为外，还作为容器存放了以下信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">protected final MapperRegistry mapperRegistry = new MapperRegistry(this);</span><br><span class="line">protected final InterceptorChain interceptorChain = new InterceptorChain();</span><br><span class="line">protected final TypeHandlerRegistry typeHandlerRegistry = new TypeHandlerRegistry(this);</span><br><span class="line">protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();</span><br><span class="line">protected final LanguageDriverRegistry languageRegistry = new LanguageDriverRegistry();</span><br><span class="line"></span><br><span class="line">protected final Map&lt;String, MappedStatement&gt; mappedStatements = new StrictMap<span class="tag">&lt;<span class="name">MappedStatement</span>&gt;</span>(&quot;Mapped Statements collection&quot;)</span><br><span class="line">    .conflictMessageProducer((savedValue, targetValue) -&gt;</span><br><span class="line">        &quot;. please check &quot; + savedValue.getResource() + &quot; and &quot; + targetValue.getResource());</span><br><span class="line">protected final Map&lt;String, Cache&gt; caches = new StrictMap<span class="tag">&lt;&gt;</span>(&quot;Caches collection&quot;);</span><br><span class="line">protected final Map&lt;String, ResultMap&gt; resultMaps = new StrictMap<span class="tag">&lt;&gt;</span>(&quot;Result Maps collection&quot;);</span><br><span class="line">protected final Map&lt;String, ParameterMap&gt; parameterMaps = new StrictMap<span class="tag">&lt;&gt;</span>(&quot;Parameter Maps collection&quot;);</span><br><span class="line">protected final Map&lt;String, KeyGenerator&gt; keyGenerators = new StrictMap<span class="tag">&lt;&gt;</span>(&quot;Key Generators collection&quot;);</span><br><span class="line"></span><br><span class="line">protected final Set<span class="tag">&lt;<span class="name">String</span>&gt;</span> loadedResources = new HashSet<span class="tag">&lt;&gt;</span>();</span><br><span class="line">protected final Map&lt;String, XNode&gt; sqlFragments = new StrictMap<span class="tag">&lt;&gt;</span>(&quot;XML fragments parsed from previous mappers&quot;);</span><br><span class="line"></span><br><span class="line">protected final Collection<span class="tag">&lt;<span class="name">XMLStatementBuilder</span>&gt;</span> incompleteStatements = new LinkedList<span class="tag">&lt;&gt;</span>();</span><br><span class="line">protected final Collection<span class="tag">&lt;<span class="name">CacheRefResolver</span>&gt;</span> incompleteCacheRefs = new LinkedList<span class="tag">&lt;&gt;</span>();</span><br><span class="line">protected final Collection<span class="tag">&lt;<span class="name">ResultMapResolver</span>&gt;</span> incompleteResultMaps = new LinkedList<span class="tag">&lt;&gt;</span>();</span><br><span class="line">protected final Collection<span class="tag">&lt;<span class="name">MethodResolver</span>&gt;</span> incompleteMethods = new LinkedList<span class="tag">&lt;&gt;</span>();</span><br><span class="line">    </span><br><span class="line">protected final Map&lt;String, String&gt; cacheRefMap = new HashMap<span class="tag">&lt;&gt;</span>();</span><br></pre></td></tr></table></figure>
+
+<p>mapperRegistry：用于注册 Mapper 接口信息，建立 Mapper 接口的 Class 对象和 MapperProxyFactory 对象之间的关系，其中 MapperProxyFactory 对象用于创建 Mapper 动态代理对象。</p>
+<p>interceptorChain：用于注册 MyBatis 插件信息，MyBatis 插件实际上就是一个拦截器。</p>
+<p>typeHandlerRegistry：用于注册所有的 TypeHandler，并建立 JDBC 类型、JDBC类型与 TypeHandle r之间的对应关系。</p>
+<p>typeAliasRegistry：用于注册所有的类型别名。</p>
+<p>languageRegistry：用于注册 LanguageDriver，LanguageDriver 用于解析SQL配置，将配置信息转换为 SqlSource 对象。</p>
+<p>mappedStatements：MappedStatemen t对象描述 &lt;insert|select|update|delete&gt; 等标签或者通过 @Select、@Delete、@Update、@Insert 等注解配置的SQL信息。MyBatis 将所有的 MappedStatement 对象注册到该属性中，其中 Key 为 Mapper 的 Id，Mapper 的 Id 则为 Mapper 命名空间+标签 Id, Value 为 MappedStatement 对象。</p>
+<p>caches：用于注册 Mapper 中配置的所有缓存信息，其中 Key 为 Cache 的 Id，也就是 Mapper 的命名空间，Value 为 Cache 对象。</p>
+<p>resultMaps：用于注册 Mapper 配置文件中通过 &lt;resultMap&gt; 标签配置的 ResultMap 信息，ResultMap 用于建立 Java 实体属性与数据库字段之间的映射关系，其中 Key 为 ResultMap 的 Id，该 Id 是由 Mapper 命名空间和 &lt;resultMap&gt; 标签的 id 属性组成的，Value 为解析 &lt;resultMap&gt; 标签后得到的 ResultMap 对象。</p>
+<p>parameterMaps：用于注册 Mapper 中通过 &lt;parameterMap&gt; 标签注册的参数映射信息。Key 为 ParameterMap 的 Id，由 Mapper 命名空间和 &lt;parameterMap&gt; 标签的 id 属性构成，Value 为解析 &lt;parameterMap&gt; 标签后得到的ParameterMap对象。</p>
+<p>keyGenerators：用于注册 KeyGenerator，KeyGenerator 是 MyBatis 的主键生成器，MyBatis 中提供了 3 种 KeyGenerator，即 Jdbc3KeyGenerator（数据库自增主键）、NoKeyGenerator（无自增主键）、SelectKeyGenerator（通过select语句查询自增主键，例如 oracle 的 sequence）。</p>
+<p>loadedResources：用于注册所有Mapper XML配置文件路径。</p>
+<p>sqlFragments：用于注册 Mapper 中通过 &lt;sql&gt; 标签配置的 SQL 片段，Key 为 SQL 片段的 Id，Value 为 MyBatis 封装的表示 XML 节点的 XNode 对象。</p>
+<p>incompleteStatements：用于注册解析出现异常的 XMLStatementBuilder 对象。</p>
+<p>incompleteCacheRefs：用于注册解析出现异常的 CacheRefResolver 对象。</p>
+<p>incompleteResultMaps：用于注册解析出现异常的 ResultMapResolver 对象。</p>
+<p>incompleteMethods：用于注册解析出现异常的 MethodResolver 对象。MyBatis 框架启动时，会对所有的配置信息进行解析，然后将解析后的内容注册到Configuration 对象的这些属性中。</p>
+<p>除此之外，Configuration 还作为 MetaObject、Excetor、StatementHandler、ResultHandler、ParameterHandler 组件的工厂类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> MetaObject <span class="title">newMetaObject</span><span class="params">(Object object)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> MetaObject.forObject(object, objectFactory, objectWrapperFactory, reflectorFactory);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ParameterHandler <span class="title">newParameterHandler</span><span class="params">(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql)</span> </span>&#123;</span><br><span class="line">    ParameterHandler parameterHandler = mappedStatement.getLang().createParameterHandler(mappedStatement, parameterObject, boundSql);</span><br><span class="line">    parameterHandler = (ParameterHandler) interceptorChain.pluginAll(parameterHandler);</span><br><span class="line">    <span class="keyword">return</span> parameterHandler;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResultSetHandler <span class="title">newResultSetHandler</span><span class="params">(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds, ParameterHandler parameterHandler,</span></span></span><br><span class="line"><span class="params"><span class="function">      ResultHandler resultHandler, BoundSql boundSql)</span> </span>&#123;</span><br><span class="line">    ResultSetHandler resultSetHandler = <span class="keyword">new</span> DefaultResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);</span><br><span class="line">    resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);</span><br><span class="line">    <span class="keyword">return</span> resultSetHandler;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> StatementHandler <span class="title">newStatementHandler</span><span class="params">(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)</span> </span>&#123;</span><br><span class="line">    StatementHandler statementHandler = <span class="keyword">new</span> RoutingStatementHandler(executor, mappedStatement, parameterObject, rowBounds, resultHandler, boundSql);</span><br><span class="line">    statementHandler = (StatementHandler) interceptorChain.pluginAll(statementHandler);</span><br><span class="line">    <span class="keyword">return</span> statementHandler;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Executor <span class="title">newExecutor</span><span class="params">(Transaction transaction)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> newExecutor(transaction, defaultExecutorType);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Executor <span class="title">newExecutor</span><span class="params">(Transaction transaction, ExecutorType executorType)</span> </span>&#123;</span><br><span class="line">    executorType = executorType == <span class="keyword">null</span> ? defaultExecutorType : executorType;</span><br><span class="line">    executorType = executorType == <span class="keyword">null</span> ? ExecutorType.SIMPLE : executorType;</span><br><span class="line">    Executor executor;</span><br><span class="line">    <span class="keyword">if</span> (ExecutorType.BATCH == executorType) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> BatchExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ExecutorType.REUSE == executorType) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> ReuseExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> SimpleExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (cacheEnabled) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> CachingExecutor(executor);</span><br><span class="line">    &#125;</span><br><span class="line">    executor = (Executor) interceptorChain.pluginAll(executor);</span><br><span class="line">    <span class="keyword">return</span> executor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这些工厂类主要是根据 MyBatis 的配置创建对应的实现类。其次 MyBatis 采用工厂模式创建 Executor、StatementHandler、ResultSetHandler、ParameterHandler 的另一个目的是实现插件拦截逻辑。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">四季</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://siji-90.github.io/blog/2020/12/24/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Configuration/">https://siji-90.github.io/blog/2020/12/24/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Configuration/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://siji-90.github.io/blog" target="_blank">SiJi's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/MyBatis/">MyBatis</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/bg.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2020/12/25/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84Class%E5%AE%9E%E4%BE%8B/"><img class="prev-cover" src="/blog/img/bg.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">基本类型的 Class 实例</div></div></a></div><div class="next-post pull-right"><a href="/blog/2020/12/24/MyBatis%E7%AE%80%E4%BB%8B/"><img class="next-cover" src="/blog/img/bg.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Mybatis 简介</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/2020/12/25/MyBatis核心组件Executor/" title="Mybatis 核心组件 Executor"><img class="cover" src="/blog/img/bg.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-25</div><div class="title">Mybatis 核心组件 Executor</div></div></a></div><div><a href="/blog/2020/12/24/MyBatis简介/" title="Mybatis 简介"><img class="cover" src="/blog/img/bg.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-24</div><div class="title">Mybatis 简介</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/blog/img/avatar.jpg" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">四季</div><div class="author-info__description">德智体美劳全面不发展代表</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/siji-90"><i class="fab fa-github"></i><span>GitHub</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Configuration 简介</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/2021/03/21/Spring%20Boot%E5%88%9B%E5%BB%BAstarter/" title="Spring Boot 创建 starter"><img src="/blog/img/bg.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Spring Boot 创建 starter"/></a><div class="content"><a class="title" href="/blog/2021/03/21/Spring%20Boot%E5%88%9B%E5%BB%BAstarter/" title="Spring Boot 创建 starter">Spring Boot 创建 starter</a><time datetime="2021-03-20T16:32:12.000Z" title="发表于 2021-03-21 00:32:12">2021-03-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2021/03/18/%E6%95%B0%E6%8D%AE%E5%BA%93Null%E8%BF%94%E5%9B%9E%E5%89%8D%E7%AB%AF%E5%8F%98%E4%B8%BA%20-1%20%E9%97%AE%E9%A2%98/" title="数据库Null返回前端变为 -1 问题"><img src="/blog/img/bg.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="数据库Null返回前端变为 -1 问题"/></a><div class="content"><a class="title" href="/blog/2021/03/18/%E6%95%B0%E6%8D%AE%E5%BA%93Null%E8%BF%94%E5%9B%9E%E5%89%8D%E7%AB%AF%E5%8F%98%E4%B8%BA%20-1%20%E9%97%AE%E9%A2%98/" title="数据库Null返回前端变为 -1 问题">数据库Null返回前端变为 -1 问题</a><time datetime="2021-03-18T12:32:13.000Z" title="发表于 2021-03-18 20:32:13">2021-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2021/03/12/Vue%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/" title="Vue data 属性赋值后页面不刷新问题"><img src="/blog/img/bg.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Vue data 属性赋值后页面不刷新问题"/></a><div class="content"><a class="title" href="/blog/2021/03/12/Vue%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93/" title="Vue data 属性赋值后页面不刷新问题">Vue data 属性赋值后页面不刷新问题</a><time datetime="2021-03-12T12:43:32.000Z" title="发表于 2021-03-12 20:43:32">2021-03-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2021/03/05/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" title="JVM 类加载过程"><img src="/blog/img/bg.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="JVM 类加载过程"/></a><div class="content"><a class="title" href="/blog/2021/03/05/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" title="JVM 类加载过程">JVM 类加载过程</a><time datetime="2021-03-05T13:12:04.000Z" title="发表于 2021-03-05 21:12:04">2021-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/2021/03/02/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" title="JVM 类加载器"><img src="/blog/img/bg.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="JVM 类加载器"/></a><div class="content"><a class="title" href="/blog/2021/03/02/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" title="JVM 类加载器">JVM 类加载器</a><time datetime="2021-03-02T04:42:52.000Z" title="发表于 2021-03-02 12:42:52">2021-03-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 四季</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script></div><div class="aplayer no-destroy" data-id="2829883282" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="Java,JVM,Shell,Docker,Nginx,Go,C,C++" data-fontsize="15px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
