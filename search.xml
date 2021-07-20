@@ -235,6 +235,9 @@
 
 <p>这些工厂类主要是根据 MyBatis 的配置创建对应的实现类。其次 MyBatis 采用工厂模式创建 Executor、StatementHandler、ResultSetHandler、ParameterHandler 的另一个目的是实现插件拦截逻辑。</p>
 ]]></content>
+      <categories>
+        <category>MyBatis</category>
+      </categories>
       <tags>
         <tag>MyBatis</tag>
       </tags>
@@ -275,6 +278,9 @@
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>MyBatis</category>
+      </categories>
       <tags>
         <tag>MyBatis</tag>
       </tags>
@@ -293,6 +299,9 @@
 <li>引入缓存机制，提供了与第三方缓存类库的集成支持。</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>MyBatis</category>
+      </categories>
       <tags>
         <tag>MyBatis</tag>
       </tags>

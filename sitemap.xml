@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://siji-90.github.io/blog/2020/12/25/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Executor/</loc>
+    <loc>https://siji-90.github.io/blog/2020/12/24/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Configuration/</loc>
     
     <lastmod>2021-07-20</lastmod>
     
   </url>
   
   <url>
-    <loc>https://siji-90.github.io/blog/2020/12/24/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Configuration/</loc>
+    <loc>https://siji-90.github.io/blog/2020/12/24/MyBatis%E7%AE%80%E4%BB%8B/</loc>
     
-    <lastmod>2021-07-19</lastmod>
+    <lastmod>2021-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://siji-90.github.io/blog/2020/12/25/MyBatis%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6Executor/</loc>
+    
+    <lastmod>2021-07-20</lastmod>
     
   </url>
   
@@ -38,13 +45,6 @@
   
   <url>
     <loc>https://siji-90.github.io/blog/2020/12/25/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84Class%E5%AE%9E%E4%BE%8B/</loc>
-    
-    <lastmod>2021-07-19</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://siji-90.github.io/blog/2020/12/24/MyBatis%E7%AE%80%E4%BB%8B/</loc>
     
     <lastmod>2021-07-19</lastmod>
     
@@ -287,6 +287,13 @@
   
   <url>
     <loc>https://siji-90.github.io/blog/categories/Linux/</loc>
+    <lastmod>2021-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://siji-90.github.io/blog/categories/MyBatis/</loc>
     <lastmod>2021-07-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
